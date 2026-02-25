@@ -54,7 +54,7 @@ def refresh_token(exception):
 @retry(stop_max_attempt_number=3, wait_fixed=5000,retry_on_exception=refresh_token)
 def get_bookmark_list(bookId):
     """获取我的划线"""
-    session.get(WEREAD_URL)
+    # session.get(WEREAD_URL)
     params = dict(bookId=bookId)
     r = session.get(WEREAD_BOOKMARKLIST_URL, params=params)
     if r.ok:
@@ -69,7 +69,7 @@ def get_bookmark_list(bookId):
 
 @retry(stop_max_attempt_number=3, wait_fixed=5000,retry_on_exception=refresh_token)
 def get_read_info(bookId):
-    session.get(WEREAD_URL)
+    # session.get(WEREAD_URL)
     params = dict(bookId=bookId, readingDetail=1, readingBookIndex=1, finishedDate=1)
     r = session.get(WEREAD_READ_INFO_URL, params=params)
     if r.ok:
@@ -79,7 +79,7 @@ def get_read_info(bookId):
 @retry(stop_max_attempt_number=3, wait_fixed=5000,retry_on_exception=refresh_token)
 def get_bookinfo(bookId):
     """获取书的详情"""
-    session.get(WEREAD_URL)
+    # session.get(WEREAD_URL)
     params = dict(bookId=bookId)
     r = session.get(WEREAD_BOOK_INFO, params=params)
     isbn = ""
@@ -95,7 +95,7 @@ def get_bookinfo(bookId):
 @retry(stop_max_attempt_number=3, wait_fixed=5000,retry_on_exception=refresh_token)
 def get_review_list(bookId):
     """获取笔记"""
-    session.get(WEREAD_URL)
+    # session.get(WEREAD_URL)
     params = dict(bookId=bookId, listType=11, mine=1, syncKey=0)
     r = session.get(WEREAD_REVIEW_LIST_URL, params=params)
     reviews = r.json().get("reviews")
@@ -119,7 +119,7 @@ def check(bookId):
 @retry(stop_max_attempt_number=3, wait_fixed=5000,retry_on_exception=refresh_token)
 def get_chapter_info(bookId):
     """获取章节信息"""
-    session.get(WEREAD_URL)
+    # session.get(WEREAD_URL)
     body = {"bookIds": [bookId], "synckeys": [0], "teenmode": 0}
     r = session.post(WEREAD_CHAPTER_INFO, json=body)
     if (
@@ -201,7 +201,7 @@ def add_grandchild(grandchild, results):
 
 def get_notebooklist():
     """获取笔记本列表"""
-    session.get(WEREAD_URL)
+    # session.get(WEREAD_URL)
     r = session.get(WEREAD_NOTEBOOKS_URL)
     if r.ok:
         data = r.json()
